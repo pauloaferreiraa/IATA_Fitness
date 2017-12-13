@@ -1,12 +1,21 @@
+
+
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class Conquistas {
 
-    private Map<Integer,Integer> passosHora;
+    private Map<DateTime,Integer> passosHora;
 
-    public List<Badge> getConquistas(Map<Integer,Integer> passosHora){
+    public void putHora(DateTime date,int steps){
+        passosHora.put(date,steps);
+    }
+
+    public List<Badge> getConquistas(Map<DateTime,Integer> passosHora){
         this.passosHora = passosHora;
         List<Badge> badges = new ArrayList<Badge>();
         if(ifCaminhante()){ badges.add(new Badge(BadgeType.valueOf("Caminhante"))); }
@@ -18,8 +27,8 @@ public class Conquistas {
 
     private boolean ifMaratonista(){
         int sum=0;
-        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
-            sum+=entry.getValue();
+        for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
+            sum=entry.getValue();
             // regra três simples para converter km em passos
             if(sum>=54000){
                 return true;
@@ -30,8 +39,8 @@ public class Conquistas {
 
     private boolean ifCaminhante(){
         int sum=0;
-        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
-            sum+=entry.getValue();
+        for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
+            sum=entry.getValue();
             // regra três simples para converter km em passos
             if(sum>=1276){
                 return true;
@@ -43,11 +52,11 @@ public class Conquistas {
     private boolean ifNightWalker(){
         int sumDia=0;
         int sumNoite = 0;
-        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
-            if(entry.getValue()<=18 && entry.getValue()>=6){
-                sumDia+=entry.getValue();
+        for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
+            if(entry.getKey().getHourOfDay()<=18 && entry.getKey().getHourOfDay()>=6){
+                sumDia=entry.getValue();
             }else{
-                sumNoite+=entry.getValue();
+                sumNoite=entry.getValue();
             }
         }
         if(sumDia<sumNoite){

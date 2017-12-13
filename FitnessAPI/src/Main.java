@@ -31,6 +31,7 @@ import com.google.api.services.fitness.model.AggregateResponse;
 import com.google.api.services.fitness.model.DataPoint;
 import com.google.api.services.fitness.model.Dataset;
 import com.google.api.services.fitness.model.Value;
+import org.joda.time.DateTime;
 
 
 public class Main {
@@ -124,12 +125,13 @@ public class Main {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         String start_date = null, end_date = null;
         Date start, end;
+        Conquistas conquistas = new Conquistas();
 
         /*for (int i = 0; i < 24; i++) {
             start_date = "08/08/2017 " + i + ":00:00";
             end_date = "08/08/2017 " + i + 1 + ":00:00";*/
 
-        int dia = 01, mes = 01;
+        int dia = 8, mes = 8;
         int d1 = 00;
         while (true) {
             if (mes == 13) {
@@ -160,6 +162,7 @@ public class Main {
                             }
                         }
                     }
+                    conquistas.putHora(new DateTime(end), (int) sum);
                     System.out.println("Day: " + start_date + " End: " + end_date + " Total steps: " + sum);
                     sum = 0.0;
                 } catch (Exception e) {
