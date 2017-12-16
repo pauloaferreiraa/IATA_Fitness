@@ -49,3 +49,4 @@
 **/fabric.properties
 **/*.zip
 **/*.pdf
+**/*.json

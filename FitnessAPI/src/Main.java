@@ -123,20 +123,24 @@ public class Main {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         String start_date, end_date;
 
-        Date start, end;
+        Date start=null, end=null;
+
 
 
         /*for (int i = 0; i < 24; i++) {
             start_date = "08/08/2017 " + i + ":00:00";
             end_date = "08/08/2017 " + i + 1 + ":00:00";*/
         Map<Integer,Integer> passosHora ;
-        int dia = 8, mes = 8;
+        Calendar calendar = Calendar.getInstance();
+        Date atual = calendar.getTime();
+        calendar.add(Calendar.DATE,-15);
+        System.out.println(calendar.getTime());
+        int dia = calendar.get(Calendar.DAY_OF_MONTH), mes = calendar.get(Calendar.MONTH)+1;
         int d1 = 00;
         while (true) {
             passosHora = new TreeMap<Integer, Integer>();
-            if (mes == 13) {
-                break;
-            }
+
+
             d1 = 00;
             for (int i = 0; i < 4; i++) {
                 d1 += 06;
@@ -182,6 +186,9 @@ public class Main {
 
                     dia++;
                 }
+            }
+            if (start.after(atual)) {
+                break;
             }
         }
 
