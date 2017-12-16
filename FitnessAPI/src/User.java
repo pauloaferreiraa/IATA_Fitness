@@ -19,5 +19,4 @@ public class User {
         nivel = LudificationNiveis.getInstance().getLevel(steps);
         conquistas = Conquistas.getInstance().getConquistas(passosHora);
     }
-
 }
