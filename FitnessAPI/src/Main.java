@@ -137,7 +137,9 @@ public class Main {
         System.out.println(calendar.getTime());
         int dia = calendar.get(Calendar.DAY_OF_MONTH), mes = calendar.get(Calendar.MONTH)+1;
         int d1 = 00;
+        int steps;
         while (true) {
+            steps=0;
             passosHora = new TreeMap<Integer, Integer>();
 
 
@@ -167,6 +169,7 @@ public class Main {
                         }
                     }
                     passosHora.put(d1,(int)sum);
+                    steps+=(int)sum;
                     System.out.println("Day: " + start_date + " End: " + end_date + " Total steps: " + sum);
                     sum = 0.0;
                 } catch (Exception e) {
@@ -174,7 +177,7 @@ public class Main {
                 }
             }
             // acabou um dia
-            utilizadores.add(new User(dia+"/"+mes+"/2017",passosHora.get(d1),passosHora));
+            utilizadores.add(new User(dia+"/"+mes+"/2017",steps,passosHora));
             if (dia == 31) {
                 dia = 01;
                 mes++;

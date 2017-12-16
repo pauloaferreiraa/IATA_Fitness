@@ -39,11 +39,11 @@ public class Conquistas {
     private boolean ifMaratonista(Map<Integer,Integer> passosHora){
         int sum=0;
         for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
-            sum=entry.getValue();
-            // regra três simples para converter km em passos
-            if(sum>=54000){
-                return true;
-            }
+            sum+=entry.getValue();
+        }
+        // regra três simples para converter km em passos
+        if(sum>=54000){
+            return true;
         }
         return false;
     }
@@ -51,11 +51,12 @@ public class Conquistas {
     private boolean ifCaminhante(Map<Integer,Integer> passosHora){
         int sum=0;
         for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
-            sum=entry.getValue();
-            // regra três simples para converter km em passos
-            if(sum>=1276){
-                return true;
-            }
+            sum+=entry.getValue();
+
+        }
+        // regra três simples para converter km em passos
+        if(sum>=1276){
+            return true;
         }
         return false;
     }
@@ -64,10 +65,10 @@ public class Conquistas {
         int sumDia=0;
         int sumNoite = 0;
         for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
-            if(entry.getKey()<=18 && entry.getKey()>=6){
-                sumDia=entry.getValue();
+            if(entry.getKey()<18 && entry.getKey()>=6){
+                sumDia+=entry.getValue();
             }else{
-                sumNoite=entry.getValue();
+                sumNoite+=entry.getValue();
             }
         }
         if(sumDia<sumNoite){
