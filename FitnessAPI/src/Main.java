@@ -3,10 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import org.joda.time.DateMidnight;
@@ -125,7 +122,7 @@ public class Main {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         String start_date = null, end_date = null;
         Date start, end;
-        Conquistas conquistas = new Conquistas();
+
 
         /*for (int i = 0; i < 24; i++) {
             start_date = "08/08/2017 " + i + ":00:00";
@@ -162,7 +159,7 @@ public class Main {
                             }
                         }
                     }
-                    conquistas.putHora(new DateTime(end), (int) sum);
+                    //conquistas.putHora(new DateTime(end), (int) sum);
                     System.out.println("Day: " + start_date + " End: " + end_date + " Total steps: " + sum);
                     sum = 0.0;
                 } catch (Exception e) {
