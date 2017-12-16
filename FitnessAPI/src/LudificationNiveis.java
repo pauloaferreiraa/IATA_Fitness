@@ -15,6 +15,8 @@ public class LudificationNiveis {
         return instance;
     }
 
+    //class não pode ser instanciada
+    private LudificationNiveis(){}
 
     public int getLevel(int steps){
         if(steps>=nivel7){ return 7; }

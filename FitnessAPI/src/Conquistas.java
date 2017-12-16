@@ -9,23 +9,34 @@ import java.util.Map;
 
 public class Conquistas {
 
-    private Map<DateTime,Integer> passosHora;
+/*  private Map<DateTime,Integer> passosHora;
 
     public void putHora(DateTime date,int steps){
         passosHora.put(date,steps);
+    }*/
+
+    private static Conquistas instance = null;
+
+    public static Conquistas getInstance(){
+        if(instance==null){
+            instance = new Conquistas();
+        }
+        return instance;
     }
 
+    //class não pode ser instanciada
+    private Conquistas(){}
+
     public List<Badge> getConquistas(Map<DateTime,Integer> passosHora){
-        this.passosHora = passosHora;
+        //this.passosHora = passosHora;
         List<Badge> badges = new ArrayList<Badge>();
-        if(ifCaminhante()){ badges.add(new Badge(BadgeType.valueOf("Caminhante"))); }
-        if(ifMaratonista()){ badges.add(new Badge(BadgeType.valueOf("Maratonista"))); }
-        if(ifNightWalker()){ badges.add(new Badge(BadgeType.valueOf("NightWalker"))); }
+        if(ifCaminhante(passosHora)){ badges.add(new Badge(BadgeType.valueOf("Caminhante"))); }
+        if(ifMaratonista(passosHora)){ badges.add(new Badge(BadgeType.valueOf("Maratonista"))); }
+        if(ifNightWalker(passosHora)){ badges.add(new Badge(BadgeType.valueOf("NightWalker"))); }
         return badges;
     }
 
-
-    private boolean ifMaratonista(){
+    private boolean ifMaratonista(Map<DateTime,Integer> passosHora){
         int sum=0;
         for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
             sum=entry.getValue();
@@ -37,7 +48,7 @@ public class Conquistas {
         return false;
     }
 
-    private boolean ifCaminhante(){
+    private boolean ifCaminhante(Map<DateTime,Integer> passosHora){
         int sum=0;
         for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
             sum=entry.getValue();
@@ -49,7 +60,7 @@ public class Conquistas {
         return false;
     }
 
-    private boolean ifNightWalker(){
+    private boolean ifNightWalker(Map<DateTime,Integer> passosHora){
         int sumDia=0;
         int sumNoite = 0;
         for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){

@@ -1,5 +1,10 @@
+
+
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class User {
     private int steps=0;
@@ -8,11 +13,11 @@ public class User {
     private List<Badge> conquistas = new ArrayList<Badge>();
 
 
-    public User(String data,int steps){
+    public User(String data,int steps, Map<DateTime,Integer> passosHora){
         this.data = data;
         this.steps = steps;
-        LudificationNiveis ln = LudificationNiveis.getInstance();
-        this.nivel = ln.getLevel(steps);
+        nivel = LudificationNiveis.getInstance().getLevel(steps);
+        conquistas = Conquistas.getInstance().getConquistas(passosHora);
     }
 
 }
