@@ -6,6 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import org.joda.time.DateMidnight;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -31,7 +35,7 @@ import com.google.api.services.fitness.model.Value;
 import org.joda.time.DateTime;
 
 
-public class Main {
+public class Main  extends Application{
 
     /**
      * Application name.
@@ -105,6 +109,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
+
         System.out.println("Getting step count!");
         List<User> utilizadores = new ArrayList<User>();
         double sum = 0;
@@ -198,5 +203,13 @@ public class Main {
         for(User u : utilizadores){
             System.out.println(u.getData()+" "+u.getSteps()+" "+u.getNivel());
         }
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Pane root = new Pane();
+        primaryStage.setScene(new Scene(root,300,300));
+        primaryStage.show();
     }
 }
