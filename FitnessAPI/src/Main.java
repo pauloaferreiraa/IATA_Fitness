@@ -106,6 +106,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
         System.out.println("Getting step count!");
+        List<User> utilizadores = new ArrayList<User>();
         double sum = 0;
         Credential credential = authorize();
         Fitness fitness = new Fitness.Builder(
@@ -121,19 +122,18 @@ public class Main {
 //        aggregateRequest.setStartTimeMillis(DateMidnight.now().getMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
         String start_date, end_date;
-        Date start, end;
-<<<<<<< HEAD
 
-=======
->>>>>>> 54b0250e0552d59950f6e335940d0758bf0966f9
+        Date start, end;
+
 
         /*for (int i = 0; i < 24; i++) {
             start_date = "08/08/2017 " + i + ":00:00";
             end_date = "08/08/2017 " + i + 1 + ":00:00";*/
-
+        Map<Integer,Integer> passosHora ;
         int dia = 8, mes = 8;
         int d1 = 00;
         while (true) {
+            passosHora = new TreeMap<Integer, Integer>();
             if (mes == 13) {
                 break;
             }
@@ -162,13 +162,15 @@ public class Main {
                             }
                         }
                     }
-
+                    passosHora.put(d1,(int)sum);
                     System.out.println("Day: " + start_date + " End: " + end_date + " Total steps: " + sum);
                     sum = 0.0;
                 } catch (Exception e) {
                     System.out.println(e.toString());
                 }
             }
+            // acabou um dia
+            utilizadores.add(new User(dia+"/"+mes+"/2017",passosHora.get(d1),passosHora));
             if (dia == 31) {
                 dia = 01;
                 mes++;
@@ -181,6 +183,10 @@ public class Main {
                     dia++;
                 }
             }
+        }
+
+        for(User u : utilizadores){
+            System.out.println(u.getData()+" "+u.getSteps()+" "+u.getNivel());
         }
     }
 }

@@ -1,6 +1,6 @@
 
 
-import org.joda.time.DateTime;
+
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,7 +27,7 @@ public class Conquistas {
     //class não pode ser instanciada
     private Conquistas(){}
 
-    public List<Badge> getConquistas(Map<DateTime,Integer> passosHora){
+    public List<Badge> getConquistas(Map<Integer,Integer> passosHora){
         //this.passosHora = passosHora;
         List<Badge> badges = new ArrayList<Badge>();
         if(ifCaminhante(passosHora)){ badges.add(new Badge(BadgeType.valueOf("Caminhante"))); }
@@ -36,9 +36,9 @@ public class Conquistas {
         return badges;
     }
 
-    private boolean ifMaratonista(Map<DateTime,Integer> passosHora){
+    private boolean ifMaratonista(Map<Integer,Integer> passosHora){
         int sum=0;
-        for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
+        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
             sum=entry.getValue();
             // regra três simples para converter km em passos
             if(sum>=54000){
@@ -48,9 +48,9 @@ public class Conquistas {
         return false;
     }
 
-    private boolean ifCaminhante(Map<DateTime,Integer> passosHora){
+    private boolean ifCaminhante(Map<Integer,Integer> passosHora){
         int sum=0;
-        for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
+        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
             sum=entry.getValue();
             // regra três simples para converter km em passos
             if(sum>=1276){
@@ -60,11 +60,11 @@ public class Conquistas {
         return false;
     }
 
-    private boolean ifNightWalker(Map<DateTime,Integer> passosHora){
+    private boolean ifNightWalker(Map<Integer,Integer> passosHora){
         int sumDia=0;
         int sumNoite = 0;
-        for(Map.Entry<DateTime,Integer> entry : passosHora.entrySet()){
-            if(entry.getKey().getHourOfDay()<=18 && entry.getKey().getHourOfDay()>=6){
+        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
+            if(entry.getKey()<=18 && entry.getKey()>=6){
                 sumDia=entry.getValue();
             }else{
                 sumNoite=entry.getValue();
