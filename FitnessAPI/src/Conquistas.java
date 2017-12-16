@@ -33,7 +33,17 @@ public class Conquistas {
         if(ifCaminhante(passosHora)){ badges.add(new Badge(BadgeType.valueOf("Caminhante"))); }
         if(ifMaratonista(passosHora)){ badges.add(new Badge(BadgeType.valueOf("Maratonista"))); }
         if(ifNightWalker(passosHora)){ badges.add(new Badge(BadgeType.valueOf("NightWalker"))); }
+        if(ifPeregrino(passosHora)){ badges.add(new Badge(BadgeType.valueOf("Peregrino"))); }
         return badges;
+    }
+
+    private boolean ifPeregrino(Map<Integer, Integer> passosHora) {
+
+        for(Map.Entry<Integer,Integer> entry : passosHora.entrySet()){
+            if(entry.getValue()==0)
+                return false;
+        }
+        return true;
     }
 
     private boolean ifMaratonista(Map<Integer,Integer> passosHora){

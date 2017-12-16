@@ -109,7 +109,7 @@ public class Main  extends Application{
 
 
     public static void main(String[] args) throws IOException, GeneralSecurityException {
-
+        List<Integer> mes_30 = new ArrayList<>(Arrays.asList(4,6,9,11));
         System.out.println("Getting step count!");
         List<User> utilizadores = new ArrayList<User>();
         double sum = 0;
@@ -183,7 +183,7 @@ public class Main  extends Application{
             }
             // acabou um dia
             utilizadores.add(new User(dia+"/"+mes+"/2017",steps,passosHora));
-            if (dia == 31) {
+            if (dia == 31 ||(mes_30.contains(mes) && dia==30)) {
                 dia = 01;
                 mes++;
             } else {
