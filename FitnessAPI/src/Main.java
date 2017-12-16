@@ -120,9 +120,12 @@ public class Main {
 
 //        aggregateRequest.setStartTimeMillis(DateMidnight.now().getMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-        String start_date = null, end_date = null;
+        String start_date, end_date;
         Date start, end;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54b0250e0552d59950f6e335940d0758bf0966f9
 
         /*for (int i = 0; i < 24; i++) {
             start_date = "08/08/2017 " + i + ":00:00";
@@ -159,7 +162,7 @@ public class Main {
                             }
                         }
                     }
-                    //conquistas.putHora(new DateTime(end), (int) sum);
+
                     System.out.println("Day: " + start_date + " End: " + end_date + " Total steps: " + sum);
                     sum = 0.0;
                 } catch (Exception e) {
