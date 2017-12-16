@@ -143,8 +143,8 @@ public class Main {
 
             d1 = 00;
             for (int i = 0; i < 4; i++) {
+                start_date = dia + "/" + mes + "/2017 " + d1 + ":00:00";
                 d1 += 06;
-                start_date = dia + "/" + mes + "/2017 00:00:00";
                 end_date = dia + "/" + mes + "/2017 " + d1 + ":00:00";
 
                 try {
