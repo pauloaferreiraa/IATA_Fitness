@@ -18,6 +18,8 @@ public class Badge {
                 return "Imagens/Maratonista.png";
             case NightWalker:
                 return "Imagens/NightWalker.png";
+            case Peregrino:
+                return "Imagens/Peregrino.png";
         }
         return null;
     }
@@ -31,6 +33,8 @@ public class Badge {
                 return "Caminhou o primeiro quilométro";
             case NightWalker:
                 return "Prefere caminhar durante a noite";
+            case Peregrino:
+                return "Caminhou em todos os intervalos de tempo do dia";
 
         }
         return null;
