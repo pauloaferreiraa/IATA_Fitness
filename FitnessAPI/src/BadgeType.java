@@ -1,3 +1,5 @@
+
+
 public enum BadgeType {
     Maratonista,
     Caminhante,

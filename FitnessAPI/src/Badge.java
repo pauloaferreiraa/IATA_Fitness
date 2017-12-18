@@ -1,3 +1,4 @@
+
 public class Badge {
     private BadgeType name;
     private String desc;

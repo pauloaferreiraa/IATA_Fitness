@@ -1,3 +1,5 @@
+
+
 public class LudificationNiveis {
     private int nivel1 = 1000;
     private int nivel2 = 5000;

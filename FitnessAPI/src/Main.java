@@ -1,3 +1,4 @@
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,12 +6,14 @@ import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.client.googleapis.util.Utils;
+import com.google.api.services.fitness.Fitness;
+import com.google.api.services.fitness.model.*;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.joda.time.DateMidnight;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
@@ -18,21 +21,11 @@ import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.googleapis.util.Utils;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
-import com.google.api.services.fitness.Fitness;
 import com.google.api.services.fitness.FitnessScopes;
-import com.google.api.services.fitness.model.AggregateBucket;
-import com.google.api.services.fitness.model.AggregateBy;
-import com.google.api.services.fitness.model.AggregateRequest;
-import com.google.api.services.fitness.model.AggregateResponse;
-import com.google.api.services.fitness.model.DataPoint;
-import com.google.api.services.fitness.model.Dataset;
-import com.google.api.services.fitness.model.Value;
-import org.joda.time.DateTime;
 
 
 public class Main  extends Application{
@@ -67,6 +60,8 @@ public class Main  extends Application{
      * Global instance of the HTTP transport.
      */
     private static HttpTransport HTTP_TRANSPORT;
+
+    public static List<User> utilizadores;
 
     static {
         try {
@@ -111,7 +106,7 @@ public class Main  extends Application{
     public static void main(String[] args) throws IOException, GeneralSecurityException {
 
         System.out.println("Getting step count!");
-        List<User> utilizadores = new ArrayList<User>();
+        utilizadores = new ArrayList<User>();
         double sum = 0;
         Credential credential = authorize();
         Fitness fitness = new Fitness.Builder(
@@ -208,8 +203,11 @@ public class Main  extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Pane root = new Pane();
-        primaryStage.setScene(new Scene(root,300,300));
+
+        Parent root = FXMLLoader.load(getClass().getResource("/MainWindow.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Conquistas");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
