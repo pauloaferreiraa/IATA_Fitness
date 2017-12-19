@@ -4,9 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ProgressBarTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -24,7 +26,10 @@ public class MainWindowController {
     private TableColumn<User,String> stepsCol;
 
     @FXML
-    private TableColumn<User,String> levelCol;
+    private TableColumn<User,Double> levelCol;
+
+
+
 
     public static User currentUser;
 
@@ -60,9 +65,8 @@ public class MainWindowController {
         userCol.setText("Utilizador");
         stepsCol.setCellValueFactory(new PropertyValueFactory<User,String>("steps"));
         stepsCol.setText("Passos");
-        levelCol.setCellValueFactory(new PropertyValueFactory<User,String>("nivel"));
+        levelCol.setCellValueFactory(new PropertyValueFactory<User,Double>("nivel"));
         levelCol.setText("Nível");
-
         List<User> utilizadores = Main.utilizadores;
         ObservableList<User> data = FXCollections.observableArrayList();
         for(User u:utilizadores){

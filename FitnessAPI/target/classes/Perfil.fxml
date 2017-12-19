@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -26,5 +28,15 @@
             <Font size="22.0" />
          </font>
       </Label>
+      <ProgressBar fx:id="pgBar" layoutX="389.0" layoutY="62.0" prefWidth="200.0" progress="0.0" />
+      <Label layoutX="389.0" layoutY="38.0" text="Próximo badge" />
+      <ProgressIndicator fx:id="pgInd" layoutX="610.0" layoutY="52.0" progress="0.0" />
+      <Label fx:id="stepsLB" layoutX="656.0" layoutY="63.0" />
+      <Label fx:id="stepsAtualLB" layoutX="339.0" layoutY="64.0" />
+      <Label layoutX="389.0" layoutY="99.0" text="Nivel" />
+      <ProgressBar fx:id="pgBarLVL" layoutX="389.0" layoutY="135.0" prefWidth="200.0" progress="0.0" />
+      <ProgressIndicator fx:id="pgIntLevel" layoutX="610.0" layoutY="125.0" progress="0.0" />
+      <Label fx:id="levelLB" layoutX="656.0" layoutY="136.0" />
+      <Label fx:id="levelAtualLB" layoutX="339.0" layoutY="137.0" />
    </children>
 </AnchorPane>
