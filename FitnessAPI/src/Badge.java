@@ -10,6 +10,14 @@ public class Badge {
         this.imagePath = setImagePath(name);
     }
 
+    public BadgeType getName(){
+        return name;
+    }
+
+    public String getImagePath(){
+        return imagePath;
+    }
+
     private String setImagePath(BadgeType name){
         switch(name){
             case Caminhante:

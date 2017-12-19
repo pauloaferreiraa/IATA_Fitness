@@ -62,7 +62,7 @@ public class Main  extends Application{
     private static HttpTransport HTTP_TRANSPORT;
 
     public static List<User> utilizadores;
-
+    public static Stage stage;
     static {
         try {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -209,5 +209,6 @@ public class Main  extends Application{
         primaryStage.setTitle("Conquistas");
         primaryStage.setScene(scene);
         primaryStage.show();
+        this.stage = primaryStage;
     }
 }

@@ -1,65 +1,32 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
 import java.util.List;
 
 public class MainWindowController {
 
     @FXML
-    private TableView<UserTable> rankingTable;
+    private TableView<User> rankingTable;
 
     @FXML
-    private TableColumn<UserTable,String> userCol;
+    private TableColumn<User,String> userCol;
 
     @FXML
-    private TableColumn<UserTable,String> stepsCol;
+    private TableColumn<User,String> stepsCol;
 
     @FXML
-    private TableColumn<UserTable,String> levelCol;
+    private TableColumn<User,String> levelCol;
 
-
-
-    public class UserTable{
-        private String date;
-        private int steps;
-        private int level;
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        public int getSteps() {
-            return steps;
-        }
-
-        public void setSteps(int steps) {
-            this.steps = steps;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-        public void setLevel(int level) {
-            this.level = level;
-        }
-
-        public UserTable(String date, int steps, int level) {
-
-            this.date = date;
-            this.steps = steps;
-            this.level = level;
-        }
-    }
+    public static User currentUser;
 
     public MainWindowController(){
         userCol = new TableColumn<>();
@@ -70,17 +37,36 @@ public class MainWindowController {
 
     @FXML
     private void initialize() {
-        userCol.setCellValueFactory(new PropertyValueFactory<UserTable,String>("Date"));
+        rankingTable.setRowFactory(tv -> {
+            TableRow<User> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
+                    User rowData = row.getItem();
+                    currentUser = rowData;
+                    try {
+                        Stage stage = Main.stage;
+                        Parent root = FXMLLoader.load(getClass().getResource("/Perfil.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
+        userCol.setCellValueFactory(new PropertyValueFactory<User,String>("data"));
         userCol.setText("Utilizador");
-        stepsCol.setCellValueFactory(new PropertyValueFactory<UserTable,String>("Steps"));
+        stepsCol.setCellValueFactory(new PropertyValueFactory<User,String>("steps"));
         stepsCol.setText("Passos");
-        levelCol.setCellValueFactory(new PropertyValueFactory<UserTable,String>("Level"));
+        levelCol.setCellValueFactory(new PropertyValueFactory<User,String>("nivel"));
         levelCol.setText("Nível");
 
         List<User> utilizadores = Main.utilizadores;
-        ObservableList<UserTable> data = FXCollections.observableArrayList();
+        ObservableList<User> data = FXCollections.observableArrayList();
         for(User u:utilizadores){
-            data.add(new UserTable(u.getData(),u.getSteps(),u.getNivel()));
+            data.add(u);
             //rankingTable.getItems().addAll(u.getData(),String.valueOf(u.getSteps()),String.valueOf(u.getNivel()));
         }
         rankingTable.getColumns().addAll(userCol,stepsCol, levelCol);
